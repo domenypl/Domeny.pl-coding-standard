@@ -1,7 +1,6 @@
-Symfony2 PHP CodeSniffer Coding Standard
+Domeny.pl PHP CodeSniffer Coding Standard
 ========================================
 
-A code standard to check against the [Symfony coding standards](http://symfony.com/doc/current/contributing/code/standards.html)
 
 Installation
 ------------
@@ -14,15 +13,15 @@ Installation
 
         pear config-show | grep php_dir
 
-3. Copy, symlink or check out this repo to a folder called Symfony2 inside the
+3. Copy, symlink or check out this repo to a folder called DomenyPl inside the
    phpcs `Standards` directory:
 
         cd /path/to/pear/PHP/CodeSniffer/Standards
-        git clone git://github.com/opensky/Symfony2-coding-standard.git Symfony2
+        git clone git://github.com/etechnika/Domeny.pl-coding-standard.git DomenyPl
 
 4. Set Symfony2 as your default coding standard:
 
-        phpcs --config-set default_standard Symfony2
+        phpcs --config-set default_standard DomenyPl
 
 5. ...
 
@@ -33,16 +32,3 @@ Installation
         phpcs path/to/my/file.php
 
 
-Contributing
-------------
-
-If you do contribute code to these sniffs, please make sure it conforms to the PEAR
-coding standard and that the Symfony2-coding-standard unit tests still pass.
-
-To check the coding standard, run from the Symfony2-coding-standard source root:
-
-    $ phpcs --ignore=*/tests/* --standard=PEAR . -n
-
-The unit-tests are run from within the PHP_CodeSniffer directory:
-
-    $ phpunit --filter Symfony2_* tests/AllTests.php
