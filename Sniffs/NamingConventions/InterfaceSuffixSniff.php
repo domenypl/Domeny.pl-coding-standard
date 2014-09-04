@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Symfony2-coding-standard (phpcs standard)
  *
@@ -25,8 +26,9 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/opensky/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_NamingConventions_InterfaceSuffixSniff implements PHP_CodeSniffer_Sniff
+class Symfony2DomenyPL_Sniffs_NamingConventions_InterfaceSuffixSniff implements PHP_CodeSniffer_Sniff
 {
+
     /**
      * A list of tokenizers this sniff supports.
      *
@@ -43,7 +45,7 @@ class Symfony2_Sniffs_NamingConventions_InterfaceSuffixSniff implements PHP_Code
      */
     public function register()
     {
-        return array(T_INTERFACE);
+        return array( T_INTERFACE );
     }
 
     /**
@@ -55,18 +57,15 @@ class Symfony2_Sniffs_NamingConventions_InterfaceSuffixSniff implements PHP_Code
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process( PHP_CodeSniffer_File $phpcsFile, $stackPtr )
     {
-        $tokens   = $phpcsFile->getTokens();
-        $line     = $tokens[$stackPtr]['line'];
+        $tokens = $phpcsFile->getTokens();
+        $line = $tokens[$stackPtr]['line'];
 
-        while ($tokens[$stackPtr]['line'] == $line) {
-            if ('T_STRING' == $tokens[$stackPtr]['type']) {
-                if (substr($tokens[$stackPtr]['content'], -9) != 'Interface') {
-                    $phpcsFile->addError(
-                        'Interface name is not suffixed with "Interface"',
-                        $stackPtr
-                    );
+        while ( $tokens[$stackPtr]['line'] == $line ) {
+            if ( 'T_STRING' == $tokens[$stackPtr]['type'] ) {
+                if ( substr( $tokens[$stackPtr]['content'], -9 ) != 'Interface' ) {
+                    $phpcsFile->addError( 'Interface name is not suffixed with "Interface"', $stackPtr );
                 }
                 break;
             }

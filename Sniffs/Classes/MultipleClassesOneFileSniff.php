@@ -26,8 +26,9 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/opensky/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Classes_MultipleClassesOneFileSniff implements PHP_CodeSniffer_Sniff
+class Symfony2DomenyPL_Sniffs_Classes_MultipleClassesOneFileSniff implements PHP_CodeSniffer_Sniff
 {
+
     /**
      * The number of times the T_CLASS token is encountered in the file.
      *
@@ -58,7 +59,7 @@ class Symfony2_Sniffs_Classes_MultipleClassesOneFileSniff implements PHP_CodeSni
      */
     public function register()
     {
-        return array(T_CLASS);
+        return array( T_CLASS );
     }
 
     /**
@@ -70,20 +71,17 @@ class Symfony2_Sniffs_Classes_MultipleClassesOneFileSniff implements PHP_CodeSni
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process( PHP_CodeSniffer_File $phpcsFile, $stackPtr )
     {
-        if ($this->currentFile !== $phpcsFile->getFilename()) {
-            $this->classCount  = 0;
+        if ( $this->currentFile !== $phpcsFile->getFilename() ) {
+            $this->classCount = 0;
             $this->currentFile = $phpcsFile->getFilename();
         }
 
         $this->classCount++;
 
-        if ($this->classCount > 1) {
-            $phpcsFile->addError(
-                'Multiple classes defined in a single file',
-                $stackPtr
-            );
+        if ( $this->classCount > 1 ) {
+            $phpcsFile->addError( 'Multiple classes defined in a single file', $stackPtr );
         }
 
         return;

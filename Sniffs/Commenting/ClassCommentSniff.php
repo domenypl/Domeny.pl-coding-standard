@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Parses and verifies the doc comments for classes.
  *
@@ -13,15 +14,14 @@
  * @version   CVS: $Id: ClassCommentSniff.php 301632 2010-07-28 01:57:56Z squiz $
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-
-if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === false) {
+if ( class_exists( 'PHP_CodeSniffer_CommentParser_ClassCommentParser', true ) === false ) {
     $error = 'Class PHP_CodeSniffer_CommentParser_ClassCommentParser not found';
-    throw new PHP_CodeSniffer_Exception($error);
+    throw new PHP_CodeSniffer_Exception( $error );
 }
 
-if (class_exists('PEAR_Sniffs_Commenting_ClassCommentSniff', true) === false) {
+if ( class_exists( 'PEAR_Sniffs_Commenting_ClassCommentSniff', true ) === false ) {
     $error = 'Class PEAR_Sniffs_Commenting_ClassCommentSniff not found';
-    throw new PHP_CodeSniffer_Exception($error);
+    throw new PHP_CodeSniffer_Exception( $error );
 }
 
 /**
@@ -47,68 +47,69 @@ if (class_exists('PEAR_Sniffs_Commenting_ClassCommentSniff', true) === false) {
  * @version   Release: 1.3.0RC2
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class Symfony2_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_ClassCommentSniff
+class Symfony2DomenyPL_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_ClassCommentSniff
 {
+
     /**
      * Tags in correct order and related info.
      *
      * @var array
      */
     protected $tags = array(
-        'category'   => array(
-            'required'       => false,
+        'category' => array(
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'precedes @package',
+            'order_text' => 'precedes @package',
         ),
-        'package'    => array(
-            'required'       => false,
+        'package' => array(
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'follows @category',
+            'order_text' => 'follows @category',
         ),
         'subpackage' => array(
-            'required'       => false,
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'follows @package',
+            'order_text' => 'follows @package',
         ),
-        'author'     => array(
-            'required'       => false,
+        'author' => array(
+            'required' => false,
             'allow_multiple' => true,
-            'order_text'     => 'follows @subpackage (if used) or @package',
+            'order_text' => 'follows @subpackage (if used) or @package',
         ),
-        'copyright'  => array(
-            'required'       => false,
+        'copyright' => array(
+            'required' => false,
             'allow_multiple' => true,
-            'order_text'     => 'follows @author',
+            'order_text' => 'follows @author',
         ),
-        'license'    => array(
-            'required'       => false,
+        'license' => array(
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'follows @copyright (if used) or @author',
+            'order_text' => 'follows @copyright (if used) or @author',
         ),
-        'version'    => array(
-            'required'       => false,
+        'version' => array(
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'follows @license',
+            'order_text' => 'follows @license',
         ),
-        'link'       => array(
-            'required'       => false,
+        'link' => array(
+            'required' => false,
             'allow_multiple' => true,
-            'order_text'     => 'follows @version',
+            'order_text' => 'follows @version',
         ),
-        'see'        => array(
-            'required'       => false,
+        'see' => array(
+            'required' => false,
             'allow_multiple' => true,
-            'order_text'     => 'follows @link',
+            'order_text' => 'follows @link',
         ),
-        'since'      => array(
-            'required'       => false,
+        'since' => array(
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'follows @see (if used) or @link',
+            'order_text' => 'follows @see (if used) or @link',
         ),
         'deprecated' => array(
-            'required'       => false,
+            'required' => false,
             'allow_multiple' => false,
-            'order_text'     => 'follows @since (if used) or @see (if used) or @link',
+            'order_text' => 'follows @since (if used) or @see (if used) or @link',
         ),
     );
 }

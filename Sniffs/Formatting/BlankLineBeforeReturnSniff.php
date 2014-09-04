@@ -26,8 +26,9 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/opensky/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeSniffer_Sniff
+class Symfony2DomenyPL_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeSniffer_Sniff
 {
+
     /**
      * A list of tokenizers this sniff supports.
      *
@@ -45,7 +46,7 @@ class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeS
      */
     public function register()
     {
-        return array(T_RETURN);
+        return array( T_RETURN );
     }
 
     /**
@@ -57,15 +58,15 @@ class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeS
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process( PHP_CodeSniffer_File $phpcsFile, $stackPtr )
     {
-        $tokens          = $phpcsFile->getTokens();
-        $current         = $stackPtr;
-        $previousLine    = $tokens[$stackPtr]['line'] - 1;
-        $prevLineTokens  = array();
+        $tokens = $phpcsFile->getTokens();
+        $current = $stackPtr;
+        $previousLine = $tokens[$stackPtr]['line'] - 1;
+        $prevLineTokens = array();
 
-        while ($current >= 0 && $tokens[$current]['line'] >= $previousLine) {
-            if ($tokens[$current]['line'] == $previousLine
+        while ( $current >= 0 && $tokens[$current]['line'] >= $previousLine ) {
+            if ( $tokens[$current]['line'] == $previousLine
                 && $tokens[$current]['type'] !== 'T_WHITESPACE'
                 && $tokens[$current]['type'] !== 'T_COMMENT'
             ) {
@@ -74,16 +75,13 @@ class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeS
             $current--;
         }
 
-        if (isset($prevLineTokens[0])
+        if ( isset( $prevLineTokens[0] )
             && ($prevLineTokens[0] === 'T_OPEN_CURLY_BRACKET'
             || $prevLineTokens[0] === 'T_COLON')
         ) {
             return;
-        } else if (count($prevLineTokens) > 0) {
-            $phpcsFile->addError(
-                'Missing blank line before return statement',
-                $stackPtr
-            );
+        } else if ( count( $prevLineTokens ) > 0 ) {
+            $phpcsFile->addError( 'Missing blank line before return statement', $stackPtr );
         }
 
         return;
