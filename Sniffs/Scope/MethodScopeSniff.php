@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Verifies that class members have scope modifiers.
  *
@@ -13,9 +14,8 @@
  * @version   CVS: $Id: MethodScopeSniff.php 301632 2010-07-28 01:57:56Z squiz $
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-
-if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_AbstractScopeSniff not found');
+if ( class_exists( 'PHP_CodeSniffer_Standards_AbstractScopeSniff', true ) === false ) {
+    throw new PHP_CodeSniffer_Exception( 'Class PHP_CodeSniffer_Standards_AbstractScopeSniff not found' );
 }
 
 /**
@@ -30,16 +30,16 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false
  * @version   Release: 1.3.0
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class Symfony2_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
+class Symfony2DomenyPL_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 {
+
     /**
      * Constructs a Symfony2_Sniffs_Scope_MethodScopeSniff.
      */
     public function __construct()
     {
-        parent::__construct(array(T_CLASS), array(T_FUNCTION));
-
-    }//end __construct()
+        parent::__construct( array( T_CLASS ), array( T_FUNCTION ) );
+    }
 
     /**
      * Processes the function tokens within the class.
@@ -50,22 +50,21 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_A
      *
      * @return void
      */
-    protected function processTokenWithinScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $currScope)
+    protected function processTokenWithinScope( PHP_CodeSniffer_File $phpcsFile, $stackPtr, $currScope )
     {
         $tokens = $phpcsFile->getTokens();
 
-        $methodName = $phpcsFile->getDeclarationName($stackPtr);
-        if ($methodName === null) {
+        $methodName = $phpcsFile->getDeclarationName( $stackPtr );
+        if ( $methodName === null ) {
             // Ignore closures.
             return;
         }
 
-        $modifier = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$scopeModifiers, $stackPtr);
-        if (($modifier === false) || ($tokens[$modifier]['line'] !== $tokens[$stackPtr]['line'])) {
+        $modifier = $phpcsFile->findPrevious( PHP_CodeSniffer_Tokens::$scopeModifiers, $stackPtr );
+        if ( ($modifier === false) || ($tokens[$modifier]['line'] !== $tokens[$stackPtr]['line']) ) {
             $error = 'No scope modifier specified for function "%s"';
-            $data  = array($methodName);
-            $phpcsFile->addError($error, $stackPtr, 'Missing', $data);
+            $data = array( $methodName );
+            $phpcsFile->addError( $error, $stackPtr, 'Missing', $data );
         }
-
-    }//end processTokenWithinScope()
-}//end class
+    }
+}
